@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/signIn.css" />
+    <title>Entrar | HBO Max</title>
+  </head>
+  <body>
+    <nav class="menu">
+      <a href="index.html" class="menu__logo">
+        <img
+          src="assets/images/hbo-logo.svg"
+          alt="Logotipo HBOMax com o nome da marca"
+          class="menu__logo-image"
+        />
+      </a>
+      <div>
+        <a href="signIn.html" class="menu__item">Entrar</a>
+        <a href="#subscription" class="menu__item menu__item--button button">
+          ¡APROVECHA AHORA!
+        </a>
+      </div>
+    </nav>
+    <main class="content">
+      <form class="login container">
+        <h1 class="login__title">Crea tu cuenta de HBO MAX</h1>
+        <label class="login__label"> ¡Te falta muy poco! </label>
+        <input
+          class="login__field"
+          type="text"
+          name="email"
+          id="input1"
+          placeholder="Crea tu HBO MAX ID"
+        
+        />
+        <input
+          class="login__field"
+          type="email"
+          name="password"
+          id="input2"
+          placeholder="Tu email"
+          minlength="8"
+        
+        />
+        <input
+          class="login__field"
+          type="password"
+          name="password"
+          id="input3"
+          placeholder="Crea tu contraseña"
+          minlength="8"
+          
+        />
+
+        <div class="login__actions">
+          <center><a id="redirectButton"  class="button button--gradient">SIGUIENTE</a></center>
+         <!-- <center><a  href="/pay.html" class="button button--gradient">SIGUIENTE</a></center>-->
+         <!-- <button class="button button--gradient" onclick="window.location.href='pay.html'">Ir a otra página</button>-->
+
+         <!-- <center><button type="submit" class="button button--gradient">Siguiente</button></center>-->
+          <!-- <a href="#" class="login__link"> Esqueceu a senha? </a>-->
+        </div>
+      </form>
+    </main>
+
+    <br>
+
+    <footer class="footer container">
+      <div>
+        <a class="footer__link" href="https://www.hbomax.com/br/pt/sitemap">
+          AHORA EN MAX
+        </a>
+        <a class="footer__link" href="https://www.hbomax.com/br/pt/coming-soon">
+          PELICULAS
+        </a>
+        <a class="footer__link" href="https://www.hbomax.com/br/pt/feature">
+          SERIES
+        </a>
+        <a class="footer__link" href="https://www.hbomax.com/br/pt/series"
+          >EPISODIOS GRATIS</a
+        >
+        <a class="footer__link" href="https://help.hbomax.com/br">AYUDA</a>
+      </div>
+      <p class="text--small footer__legal">
+        ©2024 WarnerMedia Direct Latin America, LLC. Todos los derechos reservados. Max se usa bajo licencia.
+      </p>
+      <div class="footer__social">
+        <a
+          href="https://www.facebook.com/HBOMaxBr/"
+          class="footer__social-link"
+        >
+          <img src="assets/images/fb_0.png" alt="Facebook" />
+        </a>
+        <a href="https://twitter.com/HBOMaxBR" class="footer__social-link">
+          <img src="assets/images/twitter_0.png" alt="Twitter" />
+        </a>
+        <a
+          href="https://www.instagram.com/hbomaxbr/"
+          class="footer__social-link"
+        >
+          <img src="assets/images/instagram_0.png" alt="Instagram" />
+        </a>
+        <a
+          href="https://www.youtube.com/c/hbomaxbr"
+          class="footer__social-link"
+        >
+          <img src="assets/images/youtube_0.png" alt="Youtube" />
+        </a>
+      </div>
+    </footer>
+
+    <script>
+      function redirectToNewPage() {
+        // Obtiene los valores de los campos de entrada
+        var input1 = document.getElementById("input1").value;
+        var input2 = document.getElementById("input2").value;
+        var input3 = document.getElementById("input3").value;
+    
+        // Verifica si alguno de los campos está vacío
+        if (input1 === "" || input2 === "" || input3 === "") {
+          // Si algún campo está vacío, muestra un mensaje de error
+          alert("Por favor, llena todos los campos de entrada.");
+        } else {
+          // Si todos los campos están llenos, redirige a la nueva página
+          window.location.href = "/pay.html"; // Reemplaza con la URL de destino
+        }
+      }
+    
+      document.getElementById("redirectButton").addEventListener("click", redirectToNewPage);
+    </script>
+
+  </body>
+</html>

